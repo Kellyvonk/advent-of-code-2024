@@ -1,0 +1,49 @@
+let file = read_file("1.input");
+
+// lines is een functie die een stuk tekst opknipt in regels
+
+let ID = lines(file);
+
+// ID is een lijst van strings, met daarin een nummer "links" en "rechts"
+
+// words is een functie die in een tekst woorden uit elkaar haalt
+
+// sorted is een functie die een lijst sorteert, en een gesorteerde kopie terug geeft
+
+let list_right = [];
+let list_left = [];
+let list_num = 0;
+let list_num2 = 0;
+
+for x in ID {
+    let location = words(x);
+    let left = location[0];
+    let right = location[1];
+    push(list_left, left);
+    push(list_right, right);
+}
+
+let list_left_sorted = sorted(list_left);
+let list_right_sorted = sorted(list_right);
+
+
+for y in 0..len(list_left_sorted) {
+    list_num = list_num + abs_diff(int(list_left_sorted[y]), int(list_right_sorted[y]));
+
+}
+
+for z in 0..len(list_left_sorted) {
+    let multi = 0;
+    for a in list_right_sorted {
+        if int(a) == int(list_left_sorted[z]) {
+            
+            multi = multi + 1;
+        }
+    }
+    list_num2 = list_num2 + (int(list_left_sorted[z])*multi); print(multi);
+
+}
+
+print(list_num2);
+
+
